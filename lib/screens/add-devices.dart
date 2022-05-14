@@ -41,7 +41,7 @@ class _AddDeviceState extends State<AddDevice> {
               width: 300,
               child: TextField(
                 onChanged: (text) {
-                  nameDevice = text;
+                  macAddress = text;
                 },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -49,15 +49,40 @@ class _AddDeviceState extends State<AddDevice> {
                 ),
               ),
             ),
+            SizedBox(height: 20),
             Container(
-              padding: EdgeInsets.all(5),
-              height: 100,
-              width: 100,
+              height: 60,
+              width: 60,
               child: ElevatedButton(
                   onPressed: () {
-                    context
-                        .read<ListDevices>()
-                        .addDevices(nameDevice, macAddress, Colors.black54);
+                    if (ListDevices.cotainInList(nameDevice)) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text(
+                              "WARNING",
+                              style: TextStyle(color: Colors.redAccent),
+                            ),
+                            content: Text(
+                                "Já existe um dispositivo com o nome '$nameDevice'!"),
+                            actions: [
+                              ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text("OK"))
+                            ],
+                          );
+                        },
+                      );
+                    } else {
+                      context
+                          .read<ListDevices>()
+                          .addDevices(nameDevice, macAddress, Colors.black54);
+                      nameDevice = '';
+                      macAddress = '';
+                    }
                   },
                   child: const Icon(Icons.add)),
             )

@@ -6,7 +6,7 @@ class Device_Item extends StatelessWidget {
   const Device_Item(this.device);
 
   void _selectedDevice(BuildContext context) {
-    print(12);
+    print(device.nameDevice);
   }
 
   @override
