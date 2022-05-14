@@ -1,27 +1,33 @@
 import 'package:flutter/material.dart';
-import 'screens/home-devices.dart';
+import 'package:project1/models/devicesList.dart';
+import 'package:provider/provider.dart';
 import 'screens/login-screen.dart';
+import 'screens/tabs_screens.dart';
+import 'utils/routes.dart';
+import 'screens/add-devices.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => ListDevices(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        secondaryHeaderColor: Colors.blueAccent,
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => LoginPage(),
-        '/home': (context) => HomeDevices(),
+        Routes.HOME: (context) => LoginPage(),
+        Routes.HOME_DEVICES: (context) => TabsScreen(),
+        Routes.ADD_DEVICES: ((context) => AddDevice()),
       },
     );
   }

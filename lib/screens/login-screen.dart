@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils/routes.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -48,8 +49,8 @@ class _LoginPageState extends State<LoginPage> {
           ),
           RaisedButton(
             onPressed: () {
-              if (email == 'seuze@gmail.com' && password == '123') {
-                Navigator.of(context).pushReplacementNamed('/home');
+              if (email == 'admin' && password == 'admin') {
+                Navigator.of(context).pushReplacementNamed(Routes.HOME_DEVICES);
               } else {}
             },
             child: Text('Entrar'),
