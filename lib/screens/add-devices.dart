@@ -61,11 +61,11 @@ class _AddDeviceState extends State<AddDevice> {
                         builder: (BuildContext context) {
                           return AlertDialog(
                             title: Text(
-                              "WARNING",
+                              "WARNING!!!",
                               style: TextStyle(color: Colors.redAccent),
                             ),
                             content: Text(
-                                "Já existe um dispositivo com o nome '$nameDevice'!"),
+                                "Já existe um dispositivo com o nome '$nameDevice'."),
                             actions: [
                               ElevatedButton(
                                   onPressed: () {
@@ -77,9 +77,8 @@ class _AddDeviceState extends State<AddDevice> {
                         },
                       );
                     } else {
-                      context
-                          .read<ListDevices>()
-                          .addDevices(nameDevice, macAddress, Colors.black54);
+                      context.read<ListDevices>().addDevices(nameDevice,
+                          macAddress, Theme.of(context).primaryColor);
                       nameDevice = '';
                       macAddress = '';
                     }

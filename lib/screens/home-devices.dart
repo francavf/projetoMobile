@@ -11,7 +11,7 @@ class HomeDevices extends StatelessWidget {
     return Consumer<ListDevices>(builder: (context, value, child) {
       return Container(
         child: GridView(
-          padding: const EdgeInsets.all(25),
+          padding: const EdgeInsets.all(18),
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent:
                 200, //cada elemento com extenso maxima de 200 pixel
@@ -27,26 +27,3 @@ class HomeDevices extends StatelessWidget {
     });
   }
 }
-
-/*class HomeDevices extends StatefulWidget {
-  const HomeDevices({Key? key}) : super(key: key);
-
-  @override
-  State<HomeDevices> createState() => _HomeDevicesState();
-}
-
-class _HomeDevicesState extends State<HomeDevices> {
-  @override
-  Widget build(BuildContext context) {
-    final devs = DUMMY_DEVICES.toList();
-    print(devs);
-
-    return Material(
-      child: ListView.builder(
-          itemCount: devs.length,
-          itemBuilder: (context, index) {
-            return Device_Item(devs[index]);
-          }),
-    );
-  }
-}*/

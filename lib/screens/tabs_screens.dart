@@ -1,3 +1,5 @@
+import 'package:project1/utils/MyDrawer.dart';
+import '../utils/MyDrawer.dart';
 import 'home-devices.dart';
 import 'package:flutter/material.dart';
 import 'favorites-devices.dart';
@@ -41,39 +43,7 @@ class _TabsScreenState extends State<TabsScreen> {
                 ]),
       ]),
       body: _screens[_indexSelectedScreen],
-      drawer: Drawer(
-        child: Container(
-            child: Column(
-          children: [
-            Container(
-              alignment: Alignment.topCenter,
-              color: Theme.of(context).colorScheme.primary,
-              padding: EdgeInsets.all(40),
-              width: 304,
-              child: Text(
-                "CONFIGURAÇÕES",
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
-              ),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.add_box,
-                size: 26,
-              ),
-              title: Text(
-                'Add_Devices',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              onTap: () {
-                Navigator.of(context).pushNamed(Routes.ADD_DEVICES);
-              },
-            ),
-          ],
-        )),
-      ),
+      drawer: const MyDrawer(),
     );
   }
 }
