@@ -7,8 +7,12 @@ import 'utils/routes.dart';
 import 'screens/add-devices.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => ListDevices(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => SwitchDevices()),
+      ChangeNotifierProvider(create: (context) => BrightnessDevices()),
+      ChangeNotifierProvider(create: (context) => RgbDevices())
+    ],
     child: MyApp(),
   ));
 }

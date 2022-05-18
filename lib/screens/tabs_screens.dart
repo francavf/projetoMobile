@@ -1,6 +1,8 @@
+import 'package:project1/screens/brightness-device.dart';
+import 'package:project1/screens/rgb-device.dart';
 import 'package:project1/utils/MyDrawer.dart';
 import '../utils/MyDrawer.dart';
-import 'home-devices.dart';
+import 'swith-device.dart';
 import 'package:flutter/material.dart';
 import 'favorites-devices.dart';
 import '../utils/routes.dart';
@@ -11,9 +13,14 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+  String namePage = 'SWITCH DEVICES';
   int _indexSelectedScreen = 0;
 
-  List<Widget> _screens = [HomeDevices(), FavoritesScreen()];
+  List<Widget> _screens = [
+    SwitchDevicesScreen(),
+    BrightnessDevicesScreen(),
+    RgbDevicesScreen()
+  ];
 
   _selectScreen(int index) {
     setState(() {
@@ -24,21 +31,30 @@ class _TabsScreenState extends State<TabsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('HOME DEVICES'), actions: [
+      appBar: AppBar(title: Text(namePage), actions: [
         PopupMenuButton(
             icon: Icon(Icons.devices_other),
             itemBuilder: (context) => [
                   PopupMenuItem(
-                    child: Text("ON/OFF"),
-                    onTap: () {},
+                    child: Text("Switch"),
+                    onTap: () {
+                      _selectScreen(0);
+                      namePage = "SWITCH DEVICES";
+                    },
                   ),
                   PopupMenuItem(
                     child: Text("BRIGHTNESS"),
-                    onTap: () {},
+                    onTap: () {
+                      _selectScreen(1);
+                      namePage = "BRIGHTNESS DEVICES";
+                    },
                   ),
                   PopupMenuItem(
                     child: Text("RGB"),
-                    onTap: () {},
+                    onTap: () {
+                      _selectScreen(2);
+                      namePage = "RGB DEVICES";
+                    },
                   ),
                 ]),
       ]),
@@ -47,31 +63,3 @@ class _TabsScreenState extends State<TabsScreen> {
     );
   }
 }
-
-
-/*PopupMenuButton(
-        
-          icon: Icon(Icons.accessibility_rounded),
-          itemBuilder: (context) => [
-                PopupMenuItem(
-                  child: Text("lll"),
-                  onTap: () {},
-                ),
-                PopupMenuItem(
-                  child: Text("kkk"),
-                  onTap: () {},
-                ),
-              ]),
-              
-              
-              ElevatedButton(
-                onPressed: () {
-                  context
-                      .read<ListDevices>()
-                      .addDevices('LL', 'AA', 111, Colors.purpleAccent);
-                },
-                child: const Icon(Icons.add))
-              
-              
-              
-              */

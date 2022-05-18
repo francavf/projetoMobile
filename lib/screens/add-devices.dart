@@ -12,6 +12,7 @@ class AddDevice extends StatefulWidget {
 class _AddDeviceState extends State<AddDevice> {
   String nameDevice = '';
   String macAddress = '';
+  String dropDownValue = 'SWITCH';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,11 +52,39 @@ class _AddDeviceState extends State<AddDevice> {
             ),
             SizedBox(height: 20),
             Container(
+              padding: EdgeInsets.all(5),
+              height: 50,
+              width: 118,
+              child: DropdownButton(
+                value: dropDownValue,
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                style: const TextStyle(color: Colors.black54),
+                underline: Container(
+                  height: 2,
+                  color: Colors.black54,
+                ),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    dropDownValue = newValue!;
+                  });
+                },
+                items: <String>['SWITCH', 'BRIGHTNESS', 'RGB']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
               height: 60,
               width: 60,
               child: ElevatedButton(
                   onPressed: () {
-                    if (ListDevices.cotainInList(nameDevice)) {
+                    if (SwitchDevices.cotainInList(nameDevice)) {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -77,10 +106,25 @@ class _AddDeviceState extends State<AddDevice> {
                         },
                       );
                     } else {
-                      context.read<ListDevices>().addDevices(nameDevice,
-                          macAddress, Theme.of(context).primaryColor);
-                      nameDevice = '';
-                      macAddress = '';
+                      switch (dropDownValue) {
+                        case "SWITCH":
+                          context
+                              .read<SwitchDevices>()
+                              .addSwitch(nameDevice, macAddress, context);
+                          break;
+
+                        case "BRIGHTNESS":
+                          context
+                              .read<BrightnessDevices>()
+                              .addBrightness(nameDevice, macAddress, context);
+                          break;
+                        case "RGB":
+                          context
+                              .read<RgbDevices>()
+                              .addRgb(nameDevice, macAddress, context);
+                          break;
+                        default:
+                      }
                     }
                   },
                   child: const Icon(Icons.add)),
