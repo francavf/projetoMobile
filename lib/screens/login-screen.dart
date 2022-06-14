@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/routes.dart';
+import '../models/user.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -55,11 +56,20 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           SizedBox(
+            height: 1,
+          ),
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(Routes.CREATE_ACCOUNT);
+              },
+              child: Text("Create Account")),
+          SizedBox(
             height: 15,
           ),
           ElevatedButton(
-            onPressed: () {
-              if (email == 'admin' && password == 'admin') {
+            onPressed: () async {
+              int status = await User.fetch(email, password);
+              if (status >= 200 && status < 300) {
                 Navigator.of(context).pushReplacementNamed(Routes.HOME_DEVICES);
               } else {}
             },

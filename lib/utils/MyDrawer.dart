@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project1/models/devices.dart';
 import 'package:project1/utils/routes.dart';
 import '../models/devicesList.dart';
+import '../models/user.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -52,17 +53,20 @@ class _MyDrawerState extends State<MyDrawer> {
               size: 26,
             ),
             title: Text(
-              'Exit',
+              'Logout',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onTap: () {
-              SwitchDevices.SWITCH_DEVICES.clear();
-              RgbDevices.RGB_DEVICES.clear();
-              BrightnessDevices.BRIGHTNESS_DEVICES.clear();
-              Navigator.of(context).pushReplacementNamed(Routes.HOME);
+            onTap: () async {
+              int status = await User.Logout(User.usuario.token);
+              if (status >= 200 && status < 300) {
+                SwitchDevices.SWITCH_DEVICES.clear();
+                RgbDevices.RGB_DEVICES.clear();
+                BrightnessDevices.BRIGHTNESS_DEVICES.clear();
+                Navigator.of(context).pushReplacementNamed(Routes.HOME);
+              }
             },
           ),
         ],

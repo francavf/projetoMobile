@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project1/screens/colorSetup-screen.dart';
 import '../models/devices.dart';
 import '../utils/routes.dart';
 
