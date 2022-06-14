@@ -125,6 +125,7 @@ class _AddDeviceState extends State<AddDevice> {
                           break;
                         default:
                       }
+                      Navigator.of(context).pop();
                     }
                   },
                   child: const Icon(Icons.add)),

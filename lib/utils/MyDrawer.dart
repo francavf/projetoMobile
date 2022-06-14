@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project1/models/devices.dart';
 import 'package:project1/utils/routes.dart';
+import '../models/devicesList.dart';
 
 class MyDrawer extends StatefulWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -57,6 +59,9 @@ class _MyDrawerState extends State<MyDrawer> {
               ),
             ),
             onTap: () {
+              SwitchDevices.SWITCH_DEVICES.clear();
+              RgbDevices.RGB_DEVICES.clear();
+              BrightnessDevices.BRIGHTNESS_DEVICES.clear();
               Navigator.of(context).pushReplacementNamed(Routes.HOME);
             },
           ),

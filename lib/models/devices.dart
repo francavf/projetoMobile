@@ -17,21 +17,36 @@ class Device {
   });
 }
 
-class LedBrightness extends Device {
+class LedBrightness {
+  int brightness;
+  final String nameDevice;
+  final String macAddress;
+  final int iD;
+  final Color color;
+  int type = 3;
+  bool state = false;
+
   LedBrightness(
-      String nameDevice, String macAddress, int id, Color color, int type)
-      : super(
-            nameDevice: nameDevice,
-            macAddress: macAddress,
-            iD: id,
-            color: color,
-            type: type);
-  int brightness = 0;
+      {required this.brightness,
+      required this.nameDevice,
+      required this.macAddress,
+      required this.iD,
+      required this.color,
+      required int id});
 }
 
-class Rgb extends LedBrightness {
+class LedRgb {
   int red = 0, green = 0, blue = 0;
+  final String nameDevice;
+  final String macAddress;
+  final int iD;
+  final Color color;
+  int type = 2;
+  bool state = false;
 
-  Rgb(String nameDevice, String macAddress, int id, Color color, int type)
-      : super(nameDevice, macAddress, id, color, type);
+  LedRgb(
+      {required this.nameDevice,
+      required this.macAddress,
+      required this.iD,
+      required this.color});
 }

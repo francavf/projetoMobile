@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
-import '../componentes/device_Component.dart';
+import '../componentes/rgb_Component.dart';
 import '../models/devicesList.dart';
 
 class RgbDevicesScreen extends StatelessWidget {
@@ -20,8 +20,8 @@ class RgbDevicesScreen extends StatelessWidget {
             crossAxisSpacing: 20, //espacamento no eixo cruzado
             mainAxisSpacing: 20, //espacamento no eixo principal
           ),
-          children: RgbDevices.RGB_DEVICES.map((Device) {
-            return Device_Item(Device);
+          children: RgbDevices.RGB_DEVICES.map((LedRgb) {
+            return Rgb_Component(LedRgb);
           }).toList(),
         ),
       );

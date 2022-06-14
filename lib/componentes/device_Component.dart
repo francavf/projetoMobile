@@ -11,6 +11,7 @@ class Device_Item extends StatefulWidget {
 
 class _Device_ItemState extends State<Device_Item> {
   bool _value = false;
+
   void _selectedDevice(BuildContext context) {
     print(widget.device.state);
   }
@@ -19,12 +20,17 @@ class _Device_ItemState extends State<Device_Item> {
     widget.device.state
         ? widget.device.state = false
         : widget.device.state = true;
+    print(widget.device.state);
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => _selectedDevice(context),
+      onTap: () {
+        setState(() {
+          _changeValue(context);
+        });
+      },
       child: Container(
         padding: EdgeInsets.all(15),
         child: Column(children: [
@@ -32,23 +38,13 @@ class _Device_ItemState extends State<Device_Item> {
             widget.device.nameDevice,
             style: Theme.of(context).textTheme.headline6,
           ),
-          Switch(
-            value: widget.device.state,
-            onChanged: (value) {
-              setState(() {
-                _value = value;
-                _changeValue(context);
-              });
-            },
-            activeColor: Colors.yellow,
-          ),
         ]),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             gradient: LinearGradient(
               colors: [
                 widget.device.color.withOpacity(0.5),
-                widget.device.color,
+                widget.device.state ? widget.device.color : Colors.black87,
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -57,3 +53,18 @@ class _Device_ItemState extends State<Device_Item> {
     );
   }
 }
+
+
+
+
+
+/*Switch(
+            value: widget.device.state,
+            onChanged: (value) {
+              setState(() {
+                _value = value;
+                _changeValue(context);
+              });
+            },
+            activeColor: Colors.yellow,
+          ),*/

@@ -5,6 +5,7 @@ import 'screens/login-screen.dart';
 import 'screens/tabs_screens.dart';
 import 'utils/routes.dart';
 import 'screens/add-devices.dart';
+import 'screens/colorSetup-screen.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         Routes.HOME: (context) => LoginPage(),
         Routes.HOME_DEVICES: (context) => TabsScreen(),
         Routes.ADD_DEVICES: ((context) => AddDevice()),
+        Routes.COLOR_DEVICES: (context) => Color_Setup(),
       },
     );
   }

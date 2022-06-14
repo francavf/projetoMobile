@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project1/models/devices.dart';
 import 'package:provider/provider.dart';
 
-import '../componentes/device_Component.dart';
+import '../componentes/brightness_Component.dart';
 import '../models/devicesList.dart';
 
 class BrightnessDevicesScreen extends StatelessWidget {
@@ -20,8 +21,8 @@ class BrightnessDevicesScreen extends StatelessWidget {
             crossAxisSpacing: 20, //espacamento no eixo cruzado
             mainAxisSpacing: 20, //espacamento no eixo principal
           ),
-          children: BrightnessDevices.BRIGHTNESS_DEVICES.map((Device) {
-            return Device_Item(Device);
+          children: BrightnessDevices.BRIGHTNESS_DEVICES.map((LedBrightness) {
+            return Brightness_Component(LedBrightness);
           }).toList(),
         ),
       );

@@ -30,7 +30,7 @@ class SwitchDevices with ChangeNotifier {
 }
 
 class BrightnessDevices with ChangeNotifier {
-  static List<Device> BRIGHTNESS_DEVICES = [];
+  static List<LedBrightness> BRIGHTNESS_DEVICES = [];
 
   static bool cotainInList(String name) {
     for (var item in BRIGHTNESS_DEVICES) {
@@ -42,18 +42,19 @@ class BrightnessDevices with ChangeNotifier {
   }
 
   void addBrightness(String name, String mac, BuildContext context) {
-    BRIGHTNESS_DEVICES.add(Device(
-        nameDevice: name,
-        macAddress: mac,
-        iD: BRIGHTNESS_DEVICES.length + 1,
+    BRIGHTNESS_DEVICES.add(LedBrightness(
+        brightness: 0,
         color: Theme.of(context).primaryColor,
-        type: 3));
+        iD: 2,
+        macAddress: mac,
+        nameDevice: name,
+        id: BRIGHTNESS_DEVICES.length + 1));
     notifyListeners();
   }
 }
 
 class RgbDevices with ChangeNotifier {
-  static List<Device> RGB_DEVICES = [];
+  static List<LedRgb> RGB_DEVICES = [];
 
   static bool cotainInList(String name) {
     for (var item in RGB_DEVICES) {
@@ -65,12 +66,11 @@ class RgbDevices with ChangeNotifier {
   }
 
   void addRgb(String name, String mac, BuildContext context) {
-    RGB_DEVICES.add(Device(
-        nameDevice: name,
-        macAddress: mac,
-        iD: RGB_DEVICES.length + 1,
+    RGB_DEVICES.add(LedRgb(
         color: Theme.of(context).primaryColor,
-        type: 3));
+        iD: RGB_DEVICES.length + 1,
+        macAddress: mac,
+        nameDevice: name));
     notifyListeners();
   }
 }

@@ -21,33 +21,43 @@ class _LoginPageState extends State<LoginPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextField(
-            onChanged: (text) {
-              email = text;
-            },
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Email',
+          Container(
+            padding: EdgeInsets.all(5),
+            height: 50,
+            width: 300,
+            child: TextField(
+              onChanged: (text) {
+                email = text;
+              },
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Email',
+              ),
             ),
           ),
           SizedBox(
             height: 10,
           ),
-          TextField(
-            onChanged: (text) {
-              password = text;
-            },
-            obscureText: true,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Password',
+          Container(
+            padding: EdgeInsets.all(5),
+            height: 50,
+            width: 300,
+            child: TextField(
+              onChanged: (text) {
+                password = text;
+              },
+              obscureText: true,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Password',
+              ),
             ),
           ),
           SizedBox(
             height: 15,
           ),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               if (email == 'admin' && password == 'admin') {
                 Navigator.of(context).pushReplacementNamed(Routes.HOME_DEVICES);
