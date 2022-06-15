@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class Device {
   final String nameDevice;
-  final String macAddress;
   final int iD;
   final Color color;
   int type;
@@ -10,7 +9,6 @@ class Device {
 
   Device({
     required this.nameDevice,
-    required this.macAddress,
     required this.iD,
     required this.color,
     required this.type,
@@ -20,7 +18,6 @@ class Device {
 class LedBrightness {
   int brightness;
   final String nameDevice;
-  final String macAddress;
   final int iD;
   final Color color;
   int type = 3;
@@ -29,7 +26,6 @@ class LedBrightness {
   LedBrightness(
       {required this.brightness,
       required this.nameDevice,
-      required this.macAddress,
       required this.iD,
       required this.color,
       required int id});
@@ -38,15 +34,10 @@ class LedBrightness {
 class LedRgb {
   int red = 0, green = 0, blue = 0;
   final String nameDevice;
-  final String macAddress;
   final int iD;
   final Color color;
   int type = 2;
   bool state = false;
 
-  LedRgb(
-      {required this.nameDevice,
-      required this.macAddress,
-      required this.iD,
-      required this.color});
+  LedRgb({required this.nameDevice, required this.iD, required this.color});
 }

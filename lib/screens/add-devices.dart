@@ -83,7 +83,7 @@ class _AddDeviceState extends State<AddDevice> {
               height: 60,
               width: 60,
               child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (SwitchDevices.cotainInList(nameDevice)) {
                       showDialog(
                         context: context,
@@ -106,26 +106,16 @@ class _AddDeviceState extends State<AddDevice> {
                         },
                       );
                     } else {
-                      switch (dropDownValue) {
-                        case "SWITCH":
-                          context
-                              .read<SwitchDevices>()
-                              .addSwitch(nameDevice, macAddress, context);
-                          break;
-
-                        case "BRIGHTNESS":
-                          context
-                              .read<BrightnessDevices>()
-                              .addBrightness(nameDevice, macAddress, context);
-                          break;
-                        case "RGB":
-                          context
-                              .read<RgbDevices>()
-                              .addRgb(nameDevice, macAddress, context);
-                          break;
-                        default:
+                      int teste = await createDevice(
+                          nameDevice,
+                          dropDownValue == "SWITCH"
+                              ? 1
+                              : (dropDownValue == "RGB" ? 2 : 3),
+                          context);
+                      print(teste);
+                      if (teste >= 200 && teste < 300) {
+                        Navigator.of(context).pop();
                       }
-                      Navigator.of(context).pop();
                     }
                   },
                   child: const Icon(Icons.add)),
@@ -136,3 +126,25 @@ class _AddDeviceState extends State<AddDevice> {
     );
   }
 }
+
+
+
+/*switch (dropDownValue) {
+                        case "SWITCH":
+                          context
+                              .read<SwitchDevices>()
+                              .addSwitch(nameDevice, context);
+                          break;
+
+                        case "BRIGHTNESS":
+                          context
+                              .read<BrightnessDevices>()
+                              .addBrightness(nameDevice, context);
+                          break;
+                        case "RGB":
+                          context
+                              .read<RgbDevices>()
+                              .addRgb(nameDevice, context);
+                          break;
+                        default:
+                      }*/
