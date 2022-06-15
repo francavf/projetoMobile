@@ -6,6 +6,7 @@ import 'swith-device.dart';
 import 'package:flutter/material.dart';
 import 'favorites-devices.dart';
 import '../utils/routes.dart';
+import '../models/devicesList.dart';
 
 class TabsScreen extends StatefulWidget {
   @override
@@ -30,6 +31,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    inicializar(context);
     return Scaffold(
       appBar: AppBar(title: Text(namePage), actions: [
         PopupMenuButton(

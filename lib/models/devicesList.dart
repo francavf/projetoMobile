@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 
 import 'devices.dart';
 
+bool init = false;
+
 class SwitchDevices with ChangeNotifier {
   static List<Device> SWITCH_DEVICES = [];
 
@@ -83,23 +85,44 @@ Future<int> createDevice(String name, int tipo, BuildContext context) async {
   });
 
   if (response.statusCode >= 200 && response.statusCode < 300) {
-    var json = jsonDecode(response.body)['device'];
-    switch (tipo) {
-      case 1:
-        context.read<SwitchDevices>().addSwitch(name, json['id'], context);
-        break;
-
-      case 3:
-        context
-            .read<BrightnessDevices>()
-            .addBrightness(name, json['id'], context);
-        break;
-      case 2:
-        context.read<RgbDevices>().addRgb(name, json['id'], context);
-        break;
-      default:
-    }
+    alocarDevices(jsonDecode(response.body)['device'], context);
   }
 
   return response.statusCode;
+}
+
+void alocarDevices(var json, BuildContext context) {
+  switch (json['type'].toString()) {
+    case "1":
+      context
+          .read<SwitchDevices>()
+          .addSwitch(json['name'], json['id'], context);
+      break;
+    case "3":
+      context
+          .read<BrightnessDevices>()
+          .addBrightness(json['name'], json['id'], context);
+      break;
+    case "2":
+      context.read<RgbDevices>().addRgb(json['name'], json['id'], context);
+      break;
+  }
+}
+
+void inicializar(BuildContext context) async {
+  if (!init) {
+    String token = User.usuario.token;
+    var url = "http://192.168.1.20:8000/api/devices";
+    var response = await http.get(Uri.parse(url), headers: {
+      'Authorization': 'Bearer $token',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+
+    var parsedJson = json.decode(response.body);
+    for (var item in parsedJson) {
+      alocarDevices(item, context);
+    }
+    init = true;
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../models/devicesList.dart';
 import '../utils/routes.dart';
 import '../models/user.dart';
 

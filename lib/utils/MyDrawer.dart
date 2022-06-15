@@ -62,6 +62,7 @@ class _MyDrawerState extends State<MyDrawer> {
             onTap: () async {
               int status = await User.Logout(User.usuario.token);
               if (status >= 200 && status < 300) {
+                init = false;
                 SwitchDevices.SWITCH_DEVICES.clear();
                 RgbDevices.RGB_DEVICES.clear();
                 BrightnessDevices.BRIGHTNESS_DEVICES.clear();

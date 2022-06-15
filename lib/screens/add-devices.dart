@@ -126,25 +126,3 @@ class _AddDeviceState extends State<AddDevice> {
     );
   }
 }
-
-
-
-/*switch (dropDownValue) {
-                        case "SWITCH":
-                          context
-                              .read<SwitchDevices>()
-                              .addSwitch(nameDevice, context);
-                          break;
-
-                        case "BRIGHTNESS":
-                          context
-                              .read<BrightnessDevices>()
-                              .addBrightness(nameDevice, context);
-                          break;
-                        case "RGB":
-                          context
-                              .read<RgbDevices>()
-                              .addRgb(nameDevice, context);
-                          break;
-                        default:
-                      }*/
